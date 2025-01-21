@@ -15,7 +15,7 @@ const BookingsTable = ({ booking }) => {
                         <div className="avatar">
                             <div className="mask mask-squircle h-12 w-12">
                                 <img
-                                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                    src={img}
                                     alt="Avatar Tailwind CSS Component" />
                             </div>
                         </div>
@@ -27,7 +27,7 @@ const BookingsTable = ({ booking }) => {
                 <td>
                     {date}
                 </td>
-                <td>Purple</td>
+                <td>{price}</td>
                 <th>
                     <button className="btn btn-ghost btn-xs">details</button>
                 </th>

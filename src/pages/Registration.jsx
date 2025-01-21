@@ -1,11 +1,12 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import reg_img from '../../public/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../components/AuthProvider/AuthProvider';
 
 const Registration = () => {
 
-    const {createUser} = useContext(AuthContext)
+    const {createUser, logOut} = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const handleSubmitButton = e =>{
         e.preventDefault()
@@ -18,6 +19,9 @@ const Registration = () => {
         createUser(email, password)
         .then(result =>{
             console.log(result.user)
+            logOut()
+            navigate('/login')
+
         })
         .catch(error =>{
             console.log(error.meessage)

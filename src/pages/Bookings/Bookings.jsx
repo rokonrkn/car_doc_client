@@ -43,7 +43,6 @@ const Bookings = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* row 1 */}
                             {
                                 bookings.map(booking => <BookingsTable
                                     key={booking._id}

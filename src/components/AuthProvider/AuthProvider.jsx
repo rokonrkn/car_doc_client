@@ -8,8 +8,6 @@ const AuthProvider = ({ children }) => {
     const [lodding, setLodding] = useState(true)
     const auth = getAuth(app);
 
-
-
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
         setLodding(true)
@@ -23,6 +21,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () =>{
         return signOut(auth)
+        setLodding(true)
     }
 
     useEffect(() => {
@@ -40,7 +39,8 @@ const AuthProvider = ({ children }) => {
         user,
         createUser,
         signIn,
-        logOut
+        logOut,
+        lodding
     }
 
     return (

@@ -4,6 +4,7 @@ import { Navigate } from "react-router";
 
 const PrivateRoute = ({children}) => {
     const {user, lodding} = useContext(AuthContext)
+    console.log(user.email)
 
     if(lodding){
         return <span className="loading loading-dots loading-xl"></span>
