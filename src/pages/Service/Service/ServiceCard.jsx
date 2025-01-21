@@ -19,7 +19,7 @@ const ServiceCard = ({ service }) => {
                     </div>
                     <div className="card-actions flex items-center mt-2 justify-between">
                         <p className="text-[#FF3811] text-[20px] font-semibold">Price: ${price}</p>
-                        <Link to={``}>
+                        <Link to={`/book/${_id}`}>
                             <span className="text-[#FF3811]"><FaArrowRight /></span>
                         </Link>
                     </div>

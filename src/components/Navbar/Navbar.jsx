@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { Link } from 'react-router'
 import logo from '../../../public/images/logo.png'
 import { FaBagShopping } from 'react-icons/fa6'
 import './Navbar.css'
+import { AuthContext } from '../AuthProvider/AuthProvider'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { user, logOut} = useContext(AuthContext)
 
+  const handleLogOut = () =>{
+   return logOut()
+  }
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
@@ -27,11 +32,19 @@ const Navbar = () => {
                 <Link><li className='hover:text-gray-400 font'>Service</li></Link>
                 <Link><li className='hover:text-gray-400 font'>Blog</li></Link>
                 <Link><li className='hover:text-gray-400 font'>Contact</li></Link>
+                {
+                  user?.email ? <>
+                    <Link to={`/bookings`}><li className='hover:text-gray-400 font'>My Orders</li></Link>
+                    <Link><button onClick={handleLogOut} className='btn btn-block'>log Out</button></Link>
+                  </>
+                    :
+                    <Link to={`/login`}><li className='hover:text-gray-400 font'>Login</li></Link>
+                }
               </ul>
             </div>
           </div>
-            <div className="flex items-center">
-          <div className="hidden lg:block">
+          <div className="flex items-center">
+            <div className="hidden lg:block">
               <button className="rounded-lg border-2 border-[#FF3811] px-5 py-3 text-md text-[#FF3811] duration-200 hover:bg-[#FF3811] hover:text-white font">Appointment</button>
             </div>
           </div>
@@ -39,10 +52,10 @@ const Navbar = () => {
       </div>
 
       <div className=" md:hidden  mr-auto">
-            <button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+        <button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
 
       {isOpen && (
         <div className="md:hidden">
